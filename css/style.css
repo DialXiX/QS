@@ -468,20 +468,6 @@ a {
   box-shadow: var(--sombra);
 }
 
-/* Marcador temporal mientras no se pega el formulario real */
-.formulario-hubspot__marcador {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  min-height: 250px;
-  margin: 0;
-  border: 2px dashed var(--borde);
-  border-radius: var(--radio);
-  color: #5A6475;
-  text-align: center;
-  padding: 1rem;
-}
-
 /* ---------- 10. Panel de administración ---------- */
 .nota-seguridad {
   max-width: 48rem;
