@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Quipu Skills | Cursos de educación continua</title>
+  <meta name="description" content="Quipu Skills: cursos cortos de Inglés, Física y Química en vivo, mixtos y grabados. Proyecto de demostración.">
+  <link rel="icon" href="assets/logo.png" type="image/png">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <!-- Enlace para saltar al contenido (útil para quien navega con teclado o lector de pantalla) -->
+  <a class="saltar-contenido" href="#contenido">Saltar al contenido</a>
+
+  <!-- ===================== ENCABEZADO ===================== -->
+  <header class="encabezado">
+    <div class="contenedor encabezado__fila">
+      <a class="marca" href="#inicio">
+        <!-- alt vacío porque el nombre ya aparece como texto al lado -->
+        <img class="marca__logo" src="assets/logo.png" alt="" width="44" height="44">
+        <span class="marca__nombre">Quipu <span class="marca__acento">Skills</span></span>
+      </a>
+
+      <!-- Navegación: solo se muestra en modo cliente -->
+      <nav class="navegacion" aria-label="Secciones de la página" data-vista="cliente">
+        <ul>
+          <li><a href="#cursos">Cursos</a></li>
+          <li><a href="#como-funciona">Cómo funciona</a></li>
+          <li><a href="#contacto">Contacto</a></li>
+        </ul>
+      </nav>
+
+      <div class="encabezado__acciones">
+        <!-- Botón destacado del aula virtual (Moodle) -->
+        <a class="boton boton--aula" data-vista="cliente"
+           href="https://quipu-skills.moodlecloud.com"
+           target="_blank" rel="noopener noreferrer">
+          Aula virtual
+        </a>
+
+        <!-- Conmutador de modo. role="switch" + aria-checked indican su estado a los lectores de pantalla -->
+        <button type="button" class="conmutador" id="conmutador-modo"
+                role="switch" aria-checked="false">
+          <span class="conmutador__pista" aria-hidden="true"><span class="conmutador__bola"></span></span>
+          <span class="conmutador__texto">Modo admin</span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- ===================== MODO CLIENTE ===================== -->
+  <main id="contenido">
+    <div id="vista-cliente">
+
+      <!-- Hero -->
+      <section class="hero" id="inicio" aria-labelledby="hero-titulo">
+        <div class="contenedor hero__fila">
+          <div class="hero__texto">
+            <p class="etiqueta">Educación continua</p>
+            <h1 id="hero-titulo">Aprende hoy lo que necesitas para crecer mañana</h1>
+            <p class="hero__bajada">
+              Cursos cortos de Inglés, Física y Química, con docentes en vivo y un aula
+              virtual disponible a cualquier hora. Te acompañamos desde el primer mensaje
+              hasta tu última clase.
+            </p>
+            <div class="hero__botones">
+              <a class="boton boton--principal" href="#contacto">Quiero información</a>
+              <a class="boton boton--secundario" href="#cursos">Ver cursos</a>
+            </div>
+          </div>
+          <img class="hero__logo" src="assets/logo.png"
+               alt="Logo de Quipu Skills: un foco rodeado de cuerdas de quipu de colores"
+               width="420" height="420">
+        </div>
+      </section>
+
+      <!-- Cursos -->
+      <section class="seccion" id="cursos" aria-labelledby="cursos-titulo">
+        <div class="contenedor">
+          <h2 id="cursos-titulo">Nuestros cursos</h2>
+          <p class="seccion__bajada">Elige el curso que te interesa y te contactamos con todos los detalles.</p>
+
+          <div class="tarjetas">
+            <!-- Cada tarjeta usa una clase de acento distinta (color de la franja superior) -->
+            <article class="tarjeta tarjeta--rojo">
+              <h3>Inglés Conversacional</h3>
+              <p class="tarjeta__descripcion">
+                Gana confianza para hablar en inglés en situaciones reales de trabajo y viaje,
+                con práctica oral en cada sesión.
+              </p>
+              <ul class="tarjeta__datos">
+                <li><span class="dato__nombre">Duración:</span> 8 semanas</li>
+                <li><span class="dato__nombre">Modalidad:</span> En vivo por Zoom</li>
+              </ul>
+              <p class="tarjeta__precio">60 USD</p>
+              <a class="boton boton--principal js-elegir-curso" href="#contacto"
+                 data-curso="Inglés Conversacional">Quiero información</a>
+            </article>
+
+            <article class="tarjeta tarjeta--verde">
+              <h3>Física Básica</h3>
+              <p class="tarjeta__descripcion">
+                Comprende el movimiento, las fuerzas y la energía con ejemplos cotidianos
+                y ejercicios guiados paso a paso.
+              </p>
+              <ul class="tarjeta__datos">
+                <li><span class="dato__nombre">Duración:</span> 6 semanas</li>
+                <li><span class="dato__nombre">Modalidad:</span> Mixta (en vivo y grabada)</li>
+              </ul>
+              <p class="tarjeta__precio">45 USD</p>
+              <a class="boton boton--principal js-elegir-curso" href="#contacto"
+                 data-curso="Física Básica">Quiero información</a>
+            </article>
+
+            <article class="tarjeta tarjeta--naranja">
+              <h3>Química General</h3>
+              <p class="tarjeta__descripcion">
+                Repasa la materia, los enlaces y las reacciones químicas a tu ritmo,
+                con clases grabadas y cuestionarios de práctica.
+              </p>
+              <ul class="tarjeta__datos">
+                <li><span class="dato__nombre">Duración:</span> 6 semanas</li>
+                <li><span class="dato__nombre">Modalidad:</span> Grabada en Moodle</li>
+              </ul>
+              <p class="tarjeta__precio">40 USD</p>
+              <a class="boton boton--principal js-elegir-curso" href="#contacto"
+                 data-curso="Química General">Quiero información</a>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <!-- Cómo funciona: los pasos del flujo del cliente -->
+      <section class="seccion seccion--blanca" id="como-funciona" aria-labelledby="pasos-titulo">
+        <div class="contenedor">
+          <h2 id="pasos-titulo">Cómo funciona</h2>
+          <p class="seccion__bajada">Tres pasos sencillos, desde tu consulta hasta tu primera clase.</p>
+
+          <!-- Lista ordenada porque los pasos tienen un orden -->
+          <ol class="pasos">
+            <li class="paso paso--rojo">
+              <span class="paso__numero" aria-hidden="true">1</span>
+              <h3>Te contactamos</h3>
+              <p>Déjanos tus datos en el formulario o escríbenos por WhatsApp. Un asesor resuelve tus dudas.</p>
+            </li>
+            <li class="paso paso--verde">
+              <span class="paso__numero" aria-hidden="true">2</span>
+              <h3>Matrícula</h3>
+              <p>Confirmas tu curso, realizas el pago y recibes tu usuario del aula virtual.</p>
+            </li>
+            <li class="paso paso--azul">
+              <span class="paso__numero" aria-hidden="true">3</span>
+              <h3>Clases en Moodle y Zoom</h3>
+              <p>Accedes a materiales y grabaciones en Moodle y a las clases en vivo por Zoom.</p>
+            </li>
+          </ol>
+        </div>
+      </section>
+
+      <!-- Contacto -->
+      <section class="seccion" id="contacto" aria-labelledby="contacto-titulo">
+        <div class="contenedor contacto__fila">
+          <div class="contacto__texto">
+            <h2 id="contacto-titulo">Solicita información</h2>
+            <p>Completa el formulario y un asesor te escribirá en menos de 24 horas.</p>
+
+            <!-- Se muestra cuando la persona elige un curso desde una tarjeta (lo controla script.js) -->
+            <p class="curso-elegido" id="curso-elegido" hidden aria-live="polite">
+              Curso seleccionado: <strong id="curso-elegido-nombre"></strong>
+            </p>
+
+            <p>¿Prefieres chatear? Escríbenos por
+              <a id="enlace-whatsapp-texto"
+                 href="https://wa.me/593962759717?text=Hola%2C%20quiero%20informaci%C3%B3n%20de%20un%20curso"
+                 target="_blank" rel="noopener noreferrer">WhatsApp</a>.
+            </p>
+          </div>
+
+          <div class="formulario-hubspot" id="formulario-hubspot">
+            <!-- AQUÍ VA EL CÓDIGO DE INSERCIÓN DEL FORMULARIO DE HUBSPOT -->
+
+            <!-- Marcador temporal: borrar este párrafo al pegar el código real de HubSpot -->
+            <p class="formulario-hubspot__marcador">
+              Aquí aparecerá el formulario de contacto de HubSpot.
+            </p>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <!-- ===================== MODO ADMINISTRADOR ===================== -->
+    <!-- Oculto por defecto; script.js lo muestra al activar el conmutador -->
+    <div id="vista-admin" hidden>
+      <section class="seccion" aria-labelledby="admin-titulo">
+        <div class="contenedor">
+          <h1 id="admin-titulo">Panel de administración</h1>
+          <p class="seccion__bajada">Accesos directos a las herramientas del equipo. Cada uno se abre en una pestaña nueva.</p>
+
+          <!-- Nota de seguridad visible -->
+          <p class="nota-seguridad">
+            El acceso lo controla cada herramienta con su propio login. Esta página no almacena credenciales.
+          </p>
+
+          <div class="accesos">
+            <article class="acceso acceso--naranja">
+              <h2>HubSpot</h2>
+              <p>CRM donde llegan los formularios de la página.</p>
+              <ul class="acceso__usos">
+                <li><strong>Contactos:</strong> personas que pidieron información.</li>
+                <li><strong>Embudo de deals:</strong> seguimiento de cada venta hasta la matrícula.</li>
+                <li><strong>Dashboard:</strong> resumen de contactos y ventas.</li>
+              </ul>
+              <a class="boton boton--principal" href="https://app.hubspot.com"
+                 target="_blank" rel="noopener noreferrer">Abrir HubSpot</a>
+            </article>
+
+            <article class="acceso acceso--rojo">
+              <h2>Moodle</h2>
+              <p>Administración del aula virtual: cursos, usuarios y matrículas.</p>
+              <a class="boton boton--principal" href="https://quipu-skills.moodlecloud.com/admin"
+                 target="_blank" rel="noopener noreferrer">Abrir administración de Moodle</a>
+            </article>
+
+            <article class="acceso acceso--azul">
+              <h2>Zoom</h2>
+              <p>Programación y gestión de las clases en vivo.</p>
+              <a class="boton boton--principal" href="https://zoom.us"
+                 target="_blank" rel="noopener noreferrer">Abrir Zoom</a>
+            </article>
+          </div>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <!-- ===================== PIE DE PÁGINA ===================== -->
+  <footer class="pie">
+    <div class="contenedor">
+      <p class="pie__aviso">Proyecto de demostración. Empresa y cursos ficticios.</p>
+      <p>&copy; 2026 Quipu Skills</p>
+    </div>
+  </footer>
+
+  <!-- Botón flotante de WhatsApp (solo modo cliente). script.js cambia el mensaje según el curso elegido -->
+  <a class="whatsapp-flotante" id="enlace-whatsapp" data-vista="cliente"
+     href="https://wa.me/593962759717?text=Hola%2C%20quiero%20informaci%C3%B3n%20de%20un%20curso"
+     target="_blank" rel="noopener noreferrer"
+     aria-label="Escríbenos por WhatsApp (se abre en una pestaña nueva)">
+    <!-- Ícono de WhatsApp en SVG (decorativo, el nombre accesible está en aria-label) -->
+    <svg viewBox="0 0 24 24" width="28" height="28" aria-hidden="true" focusable="false">
+      <path fill="currentColor" d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38a9.9 9.9 0 0 0 4.74 1.21h.01c5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01A9.82 9.82 0 0 0 12.04 2zm0 18.15h-.01a8.23 8.23 0 0 1-4.19-1.15l-.3-.18-3.12.82.83-3.04-.2-.31a8.2 8.2 0 0 1-1.26-4.38c0-4.54 3.7-8.23 8.25-8.23 2.2 0 4.27.86 5.82 2.42a8.18 8.18 0 0 1 2.41 5.82c0 4.54-3.7 8.23-8.23 8.23zm4.52-6.16c-.25-.12-1.47-.72-1.69-.81-.23-.08-.39-.12-.56.12-.16.25-.64.81-.79.97-.14.17-.29.19-.54.06-.25-.12-1.05-.39-1.99-1.23-.74-.66-1.23-1.47-1.38-1.72-.14-.25-.02-.38.11-.5.11-.11.25-.29.37-.43.13-.15.17-.25.25-.41.08-.17.04-.31-.02-.43-.06-.12-.56-1.34-.76-1.84-.2-.48-.41-.42-.56-.43h-.48c-.17 0-.43.06-.66.31-.22.25-.86.85-.86 2.07 0 1.22.89 2.4 1.01 2.56.12.17 1.75 2.67 4.23 3.74.59.26 1.05.41 1.41.52.59.19 1.13.16 1.56.1.48-.07 1.47-.6 1.67-1.18.21-.58.21-1.07.14-1.18-.06-.1-.22-.16-.47-.28z"/>
+    </svg>
+  </a>
+
+  <script src="js/script.js"></script>
+</body>
+</html>
