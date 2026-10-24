@@ -1,0 +1,615 @@
+/* =========================================================
+   Quipu Skills - Hoja de estilos
+   Enfoque "mobile first": los estilos base son para celular
+   y las media queries (min-width) agregan cambios en pantallas grandes.
+   ========================================================= */
+
+/* ---------- 1. Variables de marca ---------- */
+:root {
+  /* Paleta principal */
+  --azul-marino: #0B2A5B;   /* títulos y texto fuerte */
+  --dorado: #EBA82A;        /* botones principales */
+  --dorado-oscuro: #D39417; /* hover de botones principales */
+  --crema: #FAF8F2;         /* fondo */
+  --blanco: #FFFFFF;
+
+  /* Colores de acento (uno por curso) */
+  --rojo: #B5231F;
+  --verde: #4A7C45;
+  --naranja: #D9541E;
+  --azul: #13589E;
+
+  /* Texto y bordes */
+  --texto: #2A3547;         /* texto de párrafos, contraste alto sobre crema */
+  --borde: #E4DFD2;
+
+  /* Medidas reutilizables */
+  --radio: 12px;
+  --sombra: 0 4px 16px rgba(11, 42, 91, 0.08);
+  --alto-encabezado: 72px;
+
+  color-scheme: light;
+}
+
+/* ---------- 2. Base ---------- */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+/* El atributo hidden siempre gana, aunque otra regla defina display */
+[hidden] {
+  display: none !important;
+}
+
+html {
+  scroll-behavior: smooth;
+  /* Evita que el encabezado fijo tape el título al saltar a una sección */
+  scroll-padding-top: calc(var(--alto-encabezado) + 16px);
+}
+
+/* Respeta a quien pidió reducir animaciones en su sistema */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  * {
+    transition: none !important;
+  }
+}
+
+body {
+  margin: 0;
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  font-size: 1rem;
+  line-height: 1.6;
+  color: var(--texto);
+  background-color: var(--crema);
+  overflow-x: hidden; /* seguro extra contra el scroll horizontal */
+}
+
+img,
+svg {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+h1,
+h2,
+h3 {
+  color: var(--azul-marino);
+  line-height: 1.2;
+  margin: 0 0 0.75rem;
+}
+
+h1 { font-size: clamp(1.9rem, 6vw, 3rem); }
+h2 { font-size: clamp(1.5rem, 4vw, 2.2rem); }
+h3 { font-size: 1.25rem; }
+
+p {
+  margin: 0 0 1rem;
+}
+
+a {
+  color: var(--azul);
+}
+
+/* Foco visible para navegación con teclado */
+:focus-visible {
+  outline: 3px solid var(--azul-marino);
+  outline-offset: 3px;
+}
+
+.contenedor {
+  width: 100%;
+  max-width: 1120px;
+  margin-inline: auto;
+  padding-inline: 1.25rem;
+}
+
+/* Enlace "Saltar al contenido": oculto hasta que recibe foco */
+.saltar-contenido {
+  position: absolute;
+  left: 1rem;
+  top: -100px;
+  z-index: 100;
+  padding: 0.5rem 1rem;
+  background: var(--azul-marino);
+  color: var(--blanco);
+  border-radius: var(--radio);
+}
+
+.saltar-contenido:focus {
+  top: 1rem;
+}
+
+/* ---------- 3. Botones ---------- */
+.boton {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 44px; /* tamaño táctil mínimo recomendado */
+  padding: 0.65rem 1.4rem;
+  border: 2px solid transparent;
+  border-radius: 999px;
+  font-weight: 700;
+  text-decoration: none;
+  text-align: center;
+  cursor: pointer;
+  transition: background-color 0.2s, color 0.2s, transform 0.2s;
+}
+
+.boton:hover {
+  transform: translateY(-1px);
+}
+
+/* Principal: dorado con texto azul marino (contraste aprox. 6.8:1) */
+.boton--principal {
+  background-color: var(--dorado);
+  color: var(--azul-marino);
+}
+
+.boton--principal:hover {
+  background-color: var(--dorado-oscuro);
+}
+
+/* Secundario: borde azul marino */
+.boton--secundario {
+  background-color: transparent;
+  border-color: var(--azul-marino);
+  color: var(--azul-marino);
+}
+
+.boton--secundario:hover {
+  background-color: var(--azul-marino);
+  color: var(--blanco);
+}
+
+/* Aula virtual: azul marino para destacarlo en el encabezado */
+.boton--aula {
+  background-color: var(--azul-marino);
+  color: var(--blanco);
+  padding: 0.5rem 1rem;
+}
+
+.boton--aula:hover {
+  background-color: var(--azul);
+}
+
+/* ---------- 4. Encabezado ---------- */
+.encabezado {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  background-color: var(--crema);
+  border-bottom: 1px solid var(--borde);
+}
+
+.encabezado__fila {
+  display: flex;
+  flex-wrap: wrap; /* en celulares los elementos bajan de línea en vez de desbordarse */
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  min-height: var(--alto-encabezado);
+  padding-block: 0.5rem;
+}
+
+.marca {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  text-decoration: none;
+}
+
+.marca__logo {
+  width: 44px;
+  height: 44px;
+  border-radius: 8px;
+}
+
+.marca__nombre {
+  font-size: 1.25rem;
+  font-weight: 800;
+  color: var(--azul-marino);
+}
+
+.marca__acento {
+  /* Dorado oscurecido para que el texto tenga buen contraste sobre crema */
+  color: #8A5A00;
+}
+
+/* La navegación se oculta en celular (la página es corta y se recorre con scroll) */
+.navegacion {
+  display: none;
+}
+
+.navegacion ul {
+  display: flex;
+  gap: 1.5rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.navegacion a {
+  color: var(--azul-marino);
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.navegacion a:hover {
+  text-decoration: underline;
+}
+
+.encabezado__acciones {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+/* Conmutador de modo (interruptor tipo "switch") */
+.conmutador {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  min-height: 44px;
+  padding: 0.25rem 0.5rem;
+  border: none;
+  background: none;
+  font: inherit;
+  font-weight: 600;
+  color: var(--azul-marino);
+  cursor: pointer;
+  border-radius: var(--radio);
+}
+
+.conmutador__pista {
+  position: relative;
+  width: 44px;
+  height: 24px;
+  border-radius: 999px;
+  background-color: #8C93A0;
+  transition: background-color 0.2s;
+}
+
+.conmutador__bola {
+  position: absolute;
+  top: 3px;
+  left: 3px;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background-color: var(--blanco);
+  transition: transform 0.2s;
+}
+
+/* Estado activo: se lee del atributo aria-checked que pone script.js */
+.conmutador[aria-checked="true"] .conmutador__pista {
+  background-color: var(--azul-marino);
+}
+
+.conmutador[aria-checked="true"] .conmutador__bola {
+  transform: translateX(20px);
+}
+
+/* ---------- 5. Hero ---------- */
+.hero {
+  padding-block: 2.5rem 3rem;
+}
+
+.hero__fila {
+  display: flex;
+  flex-direction: column-reverse; /* en celular el logo va arriba */
+  align-items: center;
+  gap: 1.5rem;
+}
+
+.etiqueta {
+  display: inline-block;
+  margin-bottom: 0.75rem;
+  padding: 0.25rem 0.75rem;
+  border-radius: 999px;
+  background-color: var(--azul-marino);
+  color: var(--blanco);
+  font-size: 0.85rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+.hero__bajada {
+  font-size: 1.1rem;
+  max-width: 34rem;
+}
+
+.hero__botones {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+}
+
+.hero__logo {
+  width: min(260px, 70vw);
+}
+
+/* ---------- 6. Secciones genéricas ---------- */
+.seccion {
+  padding-block: 3rem;
+}
+
+.seccion--blanca {
+  background-color: var(--blanco);
+}
+
+.seccion__bajada {
+  max-width: 40rem;
+  margin-bottom: 2rem;
+}
+
+/* ---------- 7. Tarjetas de cursos ---------- */
+.tarjetas {
+  display: grid;
+  grid-template-columns: 1fr; /* una columna en celular */
+  gap: 1.5rem;
+}
+
+.tarjeta {
+  /* Cada variante de color solo cambia esta variable */
+  --acento: var(--azul);
+
+  display: flex;
+  flex-direction: column;
+  padding: 1.5rem;
+  background-color: var(--blanco);
+  border: 1px solid var(--borde);
+  border-top: 8px solid var(--acento);
+  border-radius: var(--radio);
+  box-shadow: var(--sombra);
+}
+
+.tarjeta--rojo    { --acento: var(--rojo); }
+.tarjeta--verde   { --acento: var(--verde); }
+.tarjeta--naranja { --acento: var(--naranja); }
+.tarjeta--azul    { --acento: var(--azul); }
+
+.tarjeta__datos {
+  margin: 0 0 1rem;
+  padding: 0;
+  list-style: none;
+}
+
+.tarjeta__datos li {
+  padding: 0.35rem 0 0.35rem 0.75rem;
+  border-left: 4px solid var(--acento);
+  margin-bottom: 0.4rem;
+}
+
+.dato__nombre {
+  font-weight: 700;
+  color: var(--azul-marino);
+}
+
+.tarjeta__precio {
+  font-size: 1.75rem;
+  font-weight: 800;
+  color: var(--azul-marino);
+}
+
+/* El botón se queda al fondo aunque las descripciones tengan distinto largo */
+.tarjeta .boton {
+  margin-top: auto;
+}
+
+/* ---------- 8. Cómo funciona ---------- */
+.pasos {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.5rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.paso {
+  --acento: var(--azul);
+  padding: 1.5rem;
+  border-radius: var(--radio);
+  background-color: var(--crema);
+  border-left: 6px solid var(--acento);
+}
+
+.paso--rojo  { --acento: var(--rojo); }
+.paso--verde { --acento: var(--verde); }
+.paso--azul  { --acento: var(--azul); }
+
+/* Número en círculo: blanco sobre rojo, verde o azul (contraste mayor a 4.5:1) */
+.paso__numero {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.5rem;
+  height: 2.5rem;
+  margin-bottom: 0.75rem;
+  border-radius: 50%;
+  background-color: var(--acento);
+  color: var(--blanco);
+  font-size: 1.25rem;
+  font-weight: 800;
+}
+
+.paso p {
+  margin: 0;
+}
+
+/* ---------- 9. Contacto y formulario ---------- */
+.contacto__fila {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2rem;
+}
+
+.curso-elegido {
+  padding: 0.75rem 1rem;
+  border-left: 4px solid var(--dorado);
+  background-color: var(--blanco);
+  border-radius: 0 var(--radio) var(--radio) 0;
+  color: var(--azul-marino);
+}
+
+.formulario-hubspot {
+  min-height: 300px;
+  padding: 1.5rem;
+  background-color: var(--blanco);
+  border: 1px solid var(--borde);
+  border-radius: var(--radio);
+  box-shadow: var(--sombra);
+}
+
+/* Marcador temporal mientras no se pega el formulario real */
+.formulario-hubspot__marcador {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 250px;
+  margin: 0;
+  border: 2px dashed var(--borde);
+  border-radius: var(--radio);
+  color: #5A6475;
+  text-align: center;
+  padding: 1rem;
+}
+
+/* ---------- 10. Panel de administración ---------- */
+.nota-seguridad {
+  max-width: 48rem;
+  padding: 1rem 1.25rem;
+  margin-bottom: 2rem;
+  background-color: #FFF4DC;
+  border-left: 6px solid var(--dorado);
+  border-radius: 0 var(--radio) var(--radio) 0;
+  color: var(--azul-marino);
+  font-weight: 600;
+}
+
+.accesos {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.5rem;
+}
+
+.acceso {
+  --acento: var(--azul);
+  display: flex;
+  flex-direction: column;
+  padding: 1.5rem;
+  background-color: var(--blanco);
+  border: 1px solid var(--borde);
+  border-top: 8px solid var(--acento);
+  border-radius: var(--radio);
+  box-shadow: var(--sombra);
+}
+
+.acceso--rojo    { --acento: var(--rojo); }
+.acceso--naranja { --acento: var(--naranja); }
+.acceso--azul    { --acento: var(--azul); }
+
+.acceso__usos {
+  padding-left: 1.25rem;
+  margin: 0 0 1rem;
+}
+
+.acceso .boton {
+  margin-top: auto;
+}
+
+/* ---------- 11. Pie de página ---------- */
+.pie {
+  padding-block: 2rem 6rem; /* espacio extra abajo para que el botón de WhatsApp no tape el texto */
+  background-color: var(--azul-marino);
+  color: var(--crema);
+  text-align: center;
+}
+
+.pie p {
+  margin: 0.25rem 0;
+}
+
+.pie__aviso {
+  font-weight: 700;
+  color: var(--dorado);
+}
+
+/* Sobre fondo azul marino el foco se ve mejor en dorado */
+.pie :focus-visible {
+  outline-color: var(--dorado);
+}
+
+/* ---------- 12. Botón flotante de WhatsApp ---------- */
+.whatsapp-flotante {
+  position: fixed;
+  right: 1.25rem;
+  bottom: 1.25rem;
+  z-index: 60;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  /* Verde oscuro de WhatsApp: el ícono blanco tiene mejor contraste que con el verde claro */
+  background-color: #128C4B;
+  color: var(--blanco);
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.25);
+  transition: transform 0.2s;
+}
+
+.whatsapp-flotante:hover {
+  transform: scale(1.08);
+}
+
+/* ---------- 13. Tablet (desde 640px) ---------- */
+@media (min-width: 640px) {
+  .tarjetas,
+  .accesos {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* ---------- 14. Escritorio (desde 900px) ---------- */
+@media (min-width: 900px) {
+  .navegacion {
+    display: block;
+  }
+
+  .hero {
+    padding-block: 4rem 5rem;
+  }
+
+  .hero__fila {
+    flex-direction: row; /* texto a la izquierda, logo a la derecha */
+    justify-content: space-between;
+    gap: 3rem;
+  }
+
+  .hero__logo {
+    width: 380px;
+  }
+
+  .seccion {
+    padding-block: 4.5rem;
+  }
+
+  .tarjetas,
+  .pasos,
+  .accesos {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .contacto__fila {
+    grid-template-columns: 1fr 1.3fr;
+    align-items: start;
+  }
+}
